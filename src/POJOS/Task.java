@@ -7,7 +7,7 @@ public class Task {
     private int task_id;
     private String description;
     private int staff_id;
-    
+    //añadir elderly_id 
 
     //Empty constructor
     public Task() {
