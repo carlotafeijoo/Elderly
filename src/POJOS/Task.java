@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class Task {
     //Attributes of Task class
-	 private int task_id;
-	    private String description;
-	    private int duration;
-	    private Doctor doctor;
+	private int task_id;
+	private String description;
+	private int duration;
+	private Doctor doctor;
     //añadir elderly_id 
 
     //Empty constructor
