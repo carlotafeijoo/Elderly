@@ -4,11 +4,12 @@ import java.util.Objects;
 
 public class Task {
     //Attributes of Task class
-	private int task_id;
-	private String description;
-	private int duration;
-	private Doctor doctor;
-    //añadir elderly_id 
+    private int task_id;
+    private String description;
+    private int duration;
+    private Doctor doctor;
+    private Elderly elderly_id;
+    
 
     //Empty constructor
     public Task() {
@@ -44,7 +45,7 @@ public class Task {
 		return doctor;
 	}
 
-	public void setDoctoe(Doctor doctor) {
+	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
 	
@@ -60,8 +61,16 @@ public class Task {
 		return duration;
 	}
 
-	public void setDuration(int duration) {
-		this.duration = duration;
+	public void setDuration(Elderly elderly_id) {
+		this.elderly_id = elderly_id;
+	}
+	
+	public Elderly getElderly() {
+		return elderly_id;
+	}
+
+	public void setElderly(Elderly elderly_id) {
+		this.elderly_id = elderly_id;
 	}
 
 	// Has an equals (uses only description)
@@ -85,7 +94,7 @@ public class Task {
     @Override
     public String toString() {
         return "\n [Task [description=" + description +", prescribed by Dr. " + doctor.getName() +" ]]";
-    }
+    } //ver si necesitamos anadir info
     
 }
 
