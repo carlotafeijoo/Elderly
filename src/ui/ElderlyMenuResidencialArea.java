@@ -25,7 +25,7 @@ public class ElderlyMenuResidencialArea {
 
 		System.out.println("WELCOME TO THE RESIDENCIAL AREA DATA BASE");
 		
-		Socket so = new Socket("localhost", 9009);
+		 so = new Socket("localhost", 9009);
 		// el cliente lee lineas pero tambien manda
 		br = new BufferedReader(new InputStreamReader(so.getInputStream()));
 		os = so.getOutputStream();
@@ -142,24 +142,28 @@ public class ElderlyMenuResidencialArea {
 		System.out.println("DNI without letter:  ");
 		int dni = Integer.parseInt(read.readLine());
 
-		/*ArrayList<Doctor> doctores = null; // DoctorManager.searchAllDoctors();
-
+		pw.println("searchAllDoctors");
+		
+		ArrayList <Doctor>doctores = new ArrayList<>();
+		String cantidad_doctores_text=br.readLine();
+		int cantidad_doctores=Integer.parseInt(cantidad_doctores_text);
+		for(int i = 0; i < cantidad_doctores; i++) {
+			
+			String doctor_text=br.readLine();
+			Doctor doctor=new Doctor(doctor_text);
+			doctores.add(doctor);
+			
+		}
+		
+		
 		for (int i = 0; i < doctores.size(); i++) {
 			System.out.println(doctores.get(i).toStringForPatients());
-		}*/
+		}
 		
 		Integer doctor_id = InputException.getInt("Put the id of your doctor: ");
 		String username = "" + dni;
 		
-		/*MessageDigest md = MessageDigest.getInstance("MD5");
-		md.update(password.getBytes());
-		byte[] digest = md.digest();
-		User u = new User(username, digest);
-		Role role = null;// userManager.getRole("Elderly");
-		u.setRole(role);
-		role.addUser(u);
-		// userManager.newUser(u);*/
-
+		
 		Elderly elderly = new Elderly(name, dni, dob, doctor_id);
 		
 		String password = InputException.getString("Password: ");
@@ -171,21 +175,22 @@ public class ElderlyMenuResidencialArea {
 
 		br.readLine();
 
-		// elderlyManager.addElderly(elderly);
-		//elderlyMenu(u.getId());
-
 	}
 	
 	public static void logIn() throws Exception {
 
-		System.out.println("Username or dni without letter:");
+		System.out.println("Dni without letter:");
 		String username = read.readLine();
 		String password = InputException.getString("Password: ");
-		MessageDigest md = MessageDigest.getInstance("MD5");
-		md.update(password.getBytes());
-		byte[] digest = md.digest();
 
-		User u = null;// userManager.checkPassword(username, digest);
+		pw.println("checkPassword");
+		pw.println(username);
+		pw.println(password);
+
+		String role_text = br.readLine();
+		String user_text = br.readLine();
+		User u = new User(user_text);
+		u.setRole(new Role(role_text));
 
 		if (u == null) {
 			System.out.println("User not found");
@@ -195,10 +200,21 @@ public class ElderlyMenuResidencialArea {
 		if (u != null && u.getRole().getName().equals("Elderly")) {
 			Integer id = u.getId();
 
-			int elderly_id = 0;// elderlyManager.searchElderlyIdfromUId(id);
+			pw.println("searchElderlyIdfromUId");
+			pw.println(""+id);
+			String elderly_id_text = br.readLine();
 
-			Elderly elderly = null;// elderlyManager.searchElderlyById(elderly_id);
+			int elderly_id = Integer.parseInt(elderly_id_text);
 
+			pw.println("searchElderlyById");
+
+			pw.println(elderly_id);
+
+			String elderly_text = br.readLine();
+
+			Elderly elderly = new Elderly(elderly_text);
+
+			
 			System.out.println(elderly);
 			System.out.println("Login successful!");
 			elderlyMenu(u.getId());
@@ -226,7 +242,7 @@ public class ElderlyMenuResidencialArea {
 					break;
 				case 2:
 					int elderly_id = 0;// elderlyManager.searchElderlyIdfromUId(User_id);
-					List<Task> tasks = null;// elderlyManager.seeTasks(elderly_id);
+					List<Task> tasks = null;// elderlyManager.seeTasksbyElderly(elderly_id);
 					for (int i = 0; i < tasks.size(); i++) {
 						System.out.println(tasks.get(i).toStringtoElderly());
 					}
