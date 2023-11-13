@@ -241,12 +241,27 @@ public class ElderlyMenuResidencialArea {
 					// AQUI: FUNCION DE LLAMAR AL BITALINO
 					break;
 				case 2:
-					int elderly_id = 0;// elderlyManager.searchElderlyIdfromUId(User_id);
-					List<Task> tasks = null;// elderlyManager.seeTasksbyElderly(elderly_id);
-					for (int i = 0; i < tasks.size(); i++) {
-						System.out.println(tasks.get(i).toStringtoElderly());
+					pw.println("searchElderlyIdfromUId"); //find id doctor from User id
+					pw.println(User_id);
+					String elderly_id_string = br.readLine();
+					int elderly_id = Integer.parseInt(elderly_id_string);
+					
+					//List<Task> tasksList = null;// tasksManager.getListOfTasks(doctorAllTask_id);
+					pw.println("seeTasks"); //find list task from doctor id
+					pw.println(elderly_id);
+					
+					ArrayList <Task> tasks = new ArrayList<>();
+					String cantidad_tasks_text=br.readLine();
+					int cantidad_tasks=Integer.parseInt(cantidad_tasks_text);
+					for(int i = 0; i < cantidad_tasks; i++) {
+						
+						String tasks_text=br.readLine();
+						Task task=new Task(tasks_text);
+						tasks.add(task);
 					}
+					System.out.println("List of tasks: " + tasks);
 					break;
+				
 
 				case 3:
 					mainMenu();
