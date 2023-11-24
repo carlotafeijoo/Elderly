@@ -84,7 +84,7 @@ public class BITalino {
 		
 	}
 	
-	public void open(String macAdd) throws Throwable 
+	public void open(String macAddBitalino) throws Throwable 
 	{
 	        /** Connects to a %BITalino device.
 	         * \param[in] macAdd The device Bluetooth MAC address ("xx:xx:xx:xx:xx:xx")
@@ -96,10 +96,10 @@ public class BITalino {
 	         * \exception IOException
 	         * \exception SecurityException
 	         */
-		open(macAdd, 1000);
+		open(macAddBitalino, 1000);
 	}
 	
-	public void open(String macAdd, int samplingRate) throws BITalinoException 
+	public void open(String macAddBitalino, int samplingRate) throws BITalinoException 
 	{
 	        /** Connects to a %BITalino device.
 	         * \param[in] macAdd The device Bluetooth MAC address ("xx:xx:xx:xx:xx:xx")
@@ -112,20 +112,20 @@ public class BITalino {
 	         * \exception IOException
 	         * \exception SecurityException
 	         */
-			if (macAdd.split(":").length > 1) 
+			if (macAddBitalino.split(":").length > 1) 
 			{
-				macAdd = macAdd.replace(":", "");
+				macAddBitalino = macAddBitalino.replace(":", "");
 			}
-			if (macAdd.length() != 12) 
+			if (macAddBitalino.length() != 12) 
 			{
 				throw new BITalinoException(BITalinoErrorTypes.MACADDRESS_NOT_VALID);
 			}
 		
 		try 
 		{
-			hSocket = (StreamConnection)Connector.open("btspp://" + macAdd + ":1", Connector.READ_WRITE);
-			iStream = hSocket.openDataInputStream();
-			oStream = hSocket.openDataOutputStream();
+			hSocket = (StreamConnection)Connector.open("btspp://" + macAddBitalino + ":1", Connector.READ_WRITE);
+			iStream = hSocket.openDataInputStream(); //elderly 
+			oStream = hSocket.openDataOutputStream(); //Bitalino
 			Thread.sleep(2000);
 			
 		} 

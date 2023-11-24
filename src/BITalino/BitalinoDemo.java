@@ -16,6 +16,7 @@ public class BitalinoDemo {
     public static void main(String[] args) {
 
         BITalino bitalino = null;
+        
         try {
             bitalino = new BITalino();
             // Code to find Devices
@@ -60,6 +61,7 @@ public class BitalinoDemo {
             }
             //stop acquisition
             bitalino.stop();
+            
         } catch (BITalinoException ex) {
             Logger.getLogger(BitalinoDemo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Throwable ex) {
