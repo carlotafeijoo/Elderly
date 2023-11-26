@@ -93,7 +93,7 @@ public class ElderlyMenuResidencialArea {
 	private static void loginElderly() throws Exception {
 		System.out.println("1. Register");
 		System.out.println("2. Log in ");
-		System.out.println("3. Exit");
+		System.out.println("3. Back");
 		int choice = InputException.getInt(" Introduce the number of your choice: ");
 
 		switch (choice) {
