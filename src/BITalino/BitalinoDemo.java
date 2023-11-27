@@ -5,10 +5,14 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Vector;
 
 import javax.bluetooth.RemoteDevice;
 
+import POJOS.Elderly;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +21,8 @@ public class BitalinoDemo {
 
     public static Frame[] frame;
 
-    public static void main(String[] args) {
+    //public static void main(String[] args) {
+    public static File collectDataBitalino(int dni, String mac) { //DNI will be the name of the file
 
         BITalino bitalino = null;
         
@@ -36,8 +41,9 @@ public class BitalinoDemo {
 
             //You need TO CHANGE THE MAC ADDRESS
             //You should have the MAC ADDRESS in a sticker in the Bitalino
-            String macAddress = "20:17:11:20:51:54";
-            
+            //String macAddress = "20:17:11:20:51:54";
+            String macAddress = "20:16:07:18:13:61";
+
             //Sampling rate, should be 10, 100 or 1000
             int SamplingRate = 10;
             bitalino.open(macAddress, SamplingRate);
@@ -55,7 +61,13 @@ public class BitalinoDemo {
             
             
             //TO HAVE THE CODE CLEAN MAYBE THE FILE DECLARATION SHOULD BE OUTSIDE THE TRY-CATCH
-            File fileh5 = new File(diract, "ejemplo2.h5"); //.h5 is how the files are save with open signals --> we tried open it with opensignals but it didnt work 
+            //File fileh5 = new File(diract, "ejemplo2.h5"); //.h5 is how the files are save with open signals --> we tried open it with opensignals but it didnt work 
+            LocalDate fecha = LocalDate.now();
+            LocalTime hora = LocalTime.now();
+            
+            LocalDateTime fecha_hora = LocalDateTime.of(fecha, hora);
+            
+            String filename = Elderly.getDni() + fecha_hora;
             File filetxt = new File(diract, "ejemplo2.txt");
             
             //socket for file .h5

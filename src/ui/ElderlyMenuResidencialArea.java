@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import BITalino.BitalinoDemo;
 import exceptions.InputException;
 import POJOS.*;
 
@@ -239,6 +240,37 @@ public class ElderlyMenuResidencialArea {
 
 				case 1:
 					// AQUI: FUNCION DE LLAMAR AL BITALINO
+					
+					//find elderly id from user id
+					pw.println("searchElderlyIdfromUId"); 
+					pw.println(User_id);
+					String eld_id_string = br.readLine();
+					int eld_id = Integer.parseInt(eld_id_string);
+					
+					//find elderly DNI from elderly DNI
+					pw.println("searchElderlyDNIById"); 
+					pw.println(eld_id);
+					String eld_dni_string = br.readLine();
+					int eld_dni = Integer.parseInt(eld_dni_string);
+					
+					//Elderly eld = elderlyManager.searchElderlyById(eld_id);
+					
+					//Calls the function of Bitalino to start reading data
+
+					System.out.println("Enter MAC of Bitalino with ':' as the following structure xx:xx:xx:xx:xx:xx");
+					String MACBitalino = read.readLine();
+					
+					/*try {
+						String MACBitalino = read.readLine();
+					}catch IOException(ex){
+						System.out.println("Wrong Bitalino MAC address " +ex);
+					}*/
+					
+					
+					File file = BitalinoDemo.collectDataBitalino(eld_dni, MACBitalino);
+					
+					//TODO PASAR FILE A SERVER
+					
 					break;
 				case 2:
 					pw.println("searchElderlyIdfromUId"); //find id doctor from User id
