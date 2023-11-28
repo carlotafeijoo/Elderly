@@ -16,8 +16,9 @@ import POJOS.*;
 public class ElderlyMenuResidencialArea {
 	static OutputStream os = null;
 	static PrintWriter pw = null;
-	static FileOutputStream fos = null;
+	static FileInputStream fis = null;
 	static  DataOutputStream dos = null;
+	static InputStreamReader isr = null;
 	
 	static BufferedReader br = null;
 	static Socket so = null;
@@ -267,8 +268,10 @@ public class ElderlyMenuResidencialArea {
 					}*/
 					
 					File filetxt = BitalinoDemo.collectDataBitalino(eld_name_string, MACBitalino);
-					pw.println(filetxt);
-					fos = new FileOutputStream(filetxt);
+					fis = new FileInputStream(filetxt);
+					isr = new InputStreamReader(fis);
+					
+					
 					
 					
 					//TODO PASAR FILE A SERVER
