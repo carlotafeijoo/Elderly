@@ -26,8 +26,8 @@ public class BitalinoDemo {
 
         BITalino bitalino = null;
         
-        FileOutputStream outh5 = null;
-        DataOutputStream datah5 = null;
+        /*FileOutputStream outh5 = null;
+        DataOutputStream datah5 = null;*/
         
         FileOutputStream outtxt = null;
         DataOutputStream datatxt = null;
@@ -41,8 +41,8 @@ public class BitalinoDemo {
 
             //You need TO CHANGE THE MAC ADDRESS
             //You should have the MAC ADDRESS in a sticker in the Bitalino
-            //String macAddress = "20:17:11:20:51:54";
-            String macAddress = "20:16:07:18:13:61";
+            //String macAddress = "20:17:11:20:51:54"; //Bitalino 51-54
+            String macAddress = "20:16:07:18:13:61"; //Bitalino 13-61
 
             //Sampling rate, should be 10, 100 or 1000
             int SamplingRate = 10;
@@ -71,8 +71,8 @@ public class BitalinoDemo {
             File filetxt = new File(diract, "ejemplo2.txt");
             
             //socket for file .h5
-            outh5 = new FileOutputStream(fileh5);
-            datah5 = new DataOutputStream(outh5);
+            /*outh5 = new FileOutputStream(fileh5);
+            datah5 = new DataOutputStream(outh5);*/
             
             //socket for file .txt
             outtxt = new FileOutputStream(filetxt);
@@ -99,13 +99,13 @@ public class BitalinoDemo {
                     );
                     
                     //THIS IS WHAT WE ARE SAVING IN THE FILE .H5
-                    datah5.writeBytes(/*(j * block_size + i)" seq: "*/ + frame[i].seq + "\t" 
+                    /*datah5.writeBytes(/*(j * block_size + i)" seq: "* + frame[i].seq + "\t" 
                             + frame[i].analog[0] + "\t"
                             + frame[i].analog[1] + "\t"
                             + frame[i].analog[2] + "\t"
                             + frame[i].analog[3] + "\t"
                             + frame[i].analog[4] + "\t"
-                            + frame[i].analog[5] + "\n");
+                            + frame[i].analog[5] + "\n");*/
 
                     //THE SAME IS SAVE AS .TXT
                     datatxt.writeBytes(/*(j * block_size + i)" seq: "*/ + frame[i].seq + "\t" 
@@ -150,7 +150,7 @@ public class BitalinoDemo {
         		ex.printStackTrace();
             }
             
-            try { //close DataOutputStream(datah5)
+            /*try { //close DataOutputStream(datah5)
             	if(datah5 != null) {
             		datah5.close();
             	}
@@ -163,7 +163,7 @@ public class BitalinoDemo {
             	}
             } catch (IOException ex) {
         		ex.printStackTrace();
-            }
+            }*/
             
         }
 
