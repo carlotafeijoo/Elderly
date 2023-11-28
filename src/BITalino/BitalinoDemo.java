@@ -23,7 +23,7 @@ public class BitalinoDemo {
     public static Frame[] frame;
 
     //public static void main(String[] args) {
-    public static File collectDataBitalino(int dni, String mac) { //DNI will be the name of the file
+    public static File collectDataBitalino(String name, String mac) { //DNI will be the name of the file
 
         BITalino bitalino = null;
         
@@ -94,7 +94,7 @@ public class BitalinoDemo {
             String time_string = date_time.format(time_formatter);
             
             String date_time_string = "Date_"+date_string+"_Hour_"+time_string;
-            String filename = dni+ "_" + date_time_string + ".txt";
+            String filename = name+ "_" + date_time_string + ".txt";
 
             filetxt = new File(diract, filename);
             //filetxt = new File(diract, "ejemplo2.txt");
@@ -204,7 +204,7 @@ public class BitalinoDemo {
     	
     	String MAC = "20:17:11:20:51:54";
     	
-    	File filetry = bitdemo.collectDataBitalino(123456, MAC);
+    	File filetry = bitdemo.collectDataBitalino("Pepito", MAC);
     	
     	String diract = System.getProperty("user.dir");
     	System.out.println(diract);
