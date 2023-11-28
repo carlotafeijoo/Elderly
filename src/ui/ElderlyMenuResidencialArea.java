@@ -16,6 +16,8 @@ import POJOS.*;
 public class ElderlyMenuResidencialArea {
 	static OutputStream os = null;
 	static PrintWriter pw = null;
+	static FileOutputStream fos = null;
+	static  DataOutputStream dos = null;
 	
 	static BufferedReader br = null;
 	static Socket so = null;
@@ -26,7 +28,7 @@ public class ElderlyMenuResidencialArea {
 
 		System.out.println("WELCOME TO THE RESIDENCIAL AREA DATA BASE");
 		
-		 so = new Socket("localhost", 9009);
+		so = new Socket("localhost", 9009);
 		// el cliente lee lineas pero tambien manda
 		br = new BufferedReader(new InputStreamReader(so.getInputStream()));
 		os = so.getOutputStream();
@@ -239,8 +241,6 @@ public class ElderlyMenuResidencialArea {
 				switch (choice) {
 
 				case 1:
-					// AQUI: FUNCION DE LLAMAR AL BITALINO
-					
 					//find elderly id from user id
 					pw.println("searchElderlyIdfromUId"); 
 					pw.println(User_id);
@@ -266,8 +266,10 @@ public class ElderlyMenuResidencialArea {
 						System.out.println("Wrong Bitalino MAC address " +ex);
 					}*/
 					
+					File filetxt = BitalinoDemo.collectDataBitalino(eld_dni, MACBitalino);
+					pw.println(filetxt);
+					fos = new FileOutputStream(filetxt);
 					
-					File file = BitalinoDemo.collectDataBitalino(eld_dni, MACBitalino);
 					
 					//TODO PASAR FILE A SERVER
 					
@@ -296,7 +298,7 @@ public class ElderlyMenuResidencialArea {
 				
 
 				case 3:
-					mainMenu();
+					loginElderly();
 					break;
 
 				default:
