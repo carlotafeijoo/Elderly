@@ -248,10 +248,10 @@ public class ElderlyMenuResidencialArea {
 					int eld_id = Integer.parseInt(eld_id_string);
 					
 					//find elderly DNI from elderly DNI
-					pw.println("searchElderlyDNIById"); 
+					pw.println("searchElderlyNameById"); 
 					pw.println(eld_id);
-					String eld_dni_string = br.readLine();
-					int eld_dni = Integer.parseInt(eld_dni_string);
+					String eld_name_string = br.readLine();
+					int eld_name = Integer.parseInt(eld_name_string);
 					
 					//Elderly eld = elderlyManager.searchElderlyById(eld_id);
 					
@@ -266,7 +266,7 @@ public class ElderlyMenuResidencialArea {
 						System.out.println("Wrong Bitalino MAC address " +ex);
 					}*/
 					
-					File filetxt = BitalinoDemo.collectDataBitalino(eld_dni, MACBitalino);
+					File filetxt = BitalinoDemo.collectDataBitalino(eld_name, MACBitalino);
 					pw.println(filetxt);
 					fos = new FileOutputStream(filetxt);
 					
