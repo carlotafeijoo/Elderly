@@ -198,5 +198,18 @@ public class BitalinoDemo {
         return filetxt;
 
     }
+    
+    public static void main(String[] args) {
+    	BitalinoDemo bitdemo = new BitalinoDemo();
+    	
+    	String MAC = "20:17:11:20:51:54";
+    	
+    	File filetry = bitdemo.collectDataBitalino(123456, MAC);
+    	
+    	String diract = System.getProperty("user.dir");
+    	System.out.println(diract);
+    	
+    }
+    
 
 }
