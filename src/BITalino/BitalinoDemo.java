@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 
 import javax.bluetooth.RemoteDevice;
@@ -31,6 +32,8 @@ public class BitalinoDemo {
         
         FileOutputStream outtxt = null;
         DataOutputStream datatxt = null;
+        
+        File filetxt = null;
         
         try {
             bitalino = new BITalino();
@@ -62,13 +65,37 @@ public class BitalinoDemo {
             
             //TO HAVE THE CODE CLEAN MAYBE THE FILE DECLARATION SHOULD BE OUTSIDE THE TRY-CATCH
             //File fileh5 = new File(diract, "ejemplo2.h5"); //.h5 is how the files are save with open signals --> we tried open it with opensignals but it didnt work 
-            LocalDate fecha = LocalDate.now();
+            
+            /*LocalDate fecha = LocalDate.now();
             LocalTime hora = LocalTime.now();
             
             LocalDateTime fecha_hora = LocalDateTime.of(fecha, hora);
             
-            String filename = Elderly.getDni() + fecha_hora;
-            File filetxt = new File(diract, "ejemplo2.txt");
+            LocalDate localDate = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy"); // 05 May 1988
+            //String formattedString = localDate.format(formatter);
+            String fecha_hora_string = fecha_hora.format(formatter);*/
+
+            //String filename = dni + fecha_hora_string;
+            
+            //CREATION OF THE DATE AND TIME FOR OUR FILE
+            LocalDate date = LocalDate.now();
+            LocalTime time = LocalTime.now();
+            LocalDateTime date_time = LocalDateTime.of(date, time);
+            
+            //CREATION OF THE FORMAT FOR THE NAME
+            DateTimeFormatter date_formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy"); //28-11-2023
+            DateTimeFormatter time_formatter = DateTimeFormatter.ofPattern("hh-mm-ss"); //12:28:08
+
+            //CONVERSION FROM LOCALDATE/TIME TO STRING
+            String date_string = date_time.format(date_formatter);
+            String time_string = date_time.format(time_formatter);
+            
+            String date_time_string = "Date_"+date_string+"_Hour_"+time_string;
+            String filename = dni+ "_" + date_time_string + ".txt";
+
+            filetxt = new File(diract, filename);
+            //filetxt = new File(diract, "ejemplo2.txt");
             
             //socket for file .h5
             /*outh5 = new FileOutputStream(fileh5);
@@ -166,6 +193,7 @@ public class BitalinoDemo {
             }*/
             
         }
+        return filetxt;
 
     }
 
