@@ -30,7 +30,7 @@ public class ElderlyMenuResidencialArea {
 		System.out.println("WELCOME TO THE RESIDENCIAL AREA DATA BASE");
 		
 		so = new Socket("localhost", 9009);
-		// el cliente lee lineas pero tambien manda
+		//Client:reads and writes lines
 		br = new BufferedReader(new InputStreamReader(so.getInputStream()));
 		os = so.getOutputStream();
 		pw = new PrintWriter(os, true);
@@ -108,7 +108,7 @@ public class ElderlyMenuResidencialArea {
 			break;
 
 		case 2:
-			// LOG IN as doctor member
+			//LOG IN
 			logIn();
 			break;
 
@@ -270,7 +270,6 @@ public class ElderlyMenuResidencialArea {
 					File filetxt = BitalinoDemo.collectDataBitalino(eld_name_string, MACBitalino);
 					fis = new FileInputStream(filetxt);
 					isr = new InputStreamReader(fis);
-					
 					
 					
 					

@@ -64,6 +64,7 @@ public class BitalinoDemo {
             String diract = System.getProperty("user.dir"); // find where the program is executing
             //System.out.println("dir actual: "+diract);
             
+            String dirfolder = diract +"\\recordstxt";
             
             //TO HAVE THE CODE CLEAN MAYBE THE FILE DECLARATION SHOULD BE OUTSIDE THE TRY-CATCH
             //File fileh5 = new File(diract, "ejemplo2.h5"); //.h5 is how the files are save with open signals --> we tried open it with opensignals but it didnt work 
@@ -96,7 +97,7 @@ public class BitalinoDemo {
             String date_time_string = "Date_"+date_string+"_Hour_"+time_string;
             String filename = name+ "_" + date_time_string + ".txt";
 
-            filetxt = new File(diract, filename);
+            filetxt = new File(dirfolder, filename);
             //filetxt = new File(diract, "ejemplo2.txt");
             
             //socket for file .h5
@@ -204,10 +205,9 @@ public class BitalinoDemo {
     	
     	String MAC = "20:17:11:20:51:54";
     	
-    	File filetry = bitdemo.collectDataBitalino("Pepito", MAC);
+    	File filetry = bitdemo.collectDataBitalino("AlbertoMarquez", MAC);
+    	System.out.println(filetry);
     	
-    	String diract = System.getProperty("user.dir");
-    	System.out.println(diract);
     	
     }
     
