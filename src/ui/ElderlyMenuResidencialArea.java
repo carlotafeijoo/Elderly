@@ -262,20 +262,33 @@ public class ElderlyMenuResidencialArea {
 					String MACBitalino = read.readLine();
 	
 					File filetxt = BitalinoDemo.collectDataBitalino(eld_name_string, MACBitalino);
-					int size = (int) filetxt.getTotalSpace();
-					bis = new BufferedInputStream(new FileInputStream(filetxt));
-					bos = new BufferedOutputStream(os);
+					int file_size = (int) filetxt.length();
+					
+					//flujo de salida
+					dos = new DataOutputStream(os);
+					//bis = new BufferedInputStream(new FileInputStream(filetxt));
+					//bos = new BufferedOutputStream(os);
 					
 					//Envia nombre del archivo
-					dos = new DataOutputStream(os);
 					dos.writeUTF(filetxt.getName());
 					//UTF-8 es una codificación de caracteres que le asigna una cadena de bits determinada, a cada carácter Unicode y que puede leerse como un número binario. 
 					
-					byte[] bytesSent = new byte[size];
-					int inData;
-					while((inData = bis.read(bytesSent)) != -1) {
-						bos.write(bytesSent, 0, inData);
+					//envia tamano archivo
+					dos.writeInt(file_size);
+					
+					fis = new FileInputStream(filetxt);
+					bis = new BufferedInputStream(fis);
+					bos = new 	BufferedOutputStream(os);
+					
+					byte[] bytesSent = new byte[file_size];
+					bis.read(bytesSent);
+					
+					for (int i=0; i < bytesSent.length; i++) {
+						bos.write(bytesSent[i]);
 					}
+					/*while((inData = bis.read(bytesSent)) != -1) {
+						bos.write(bytesSent, 0, inData);
+					}*/
 					
  
 					
