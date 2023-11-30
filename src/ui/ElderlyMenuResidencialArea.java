@@ -17,8 +17,10 @@ public class ElderlyMenuResidencialArea {
 	static OutputStream os = null;
 	static PrintWriter pw = null;
 	static FileInputStream fis = null;
-	static  DataOutputStream dos = null;
+	static DataOutputStream dos = null;
 	static InputStreamReader isr = null;
+	static BufferedInputStream bis = null;
+	static BufferedOutputStream bos = null;
 	
 	static BufferedReader br = null;
 	static Socket so = null;
@@ -253,28 +255,29 @@ public class ElderlyMenuResidencialArea {
 					pw.println("searchElderlyNameById"); 
 					pw.println(eld_id);
 					String eld_name_string = br.readLine();
-					
-					
-					//Elderly eld = elderlyManager.searchElderlyById(eld_id);
+
 					
 					//Calls the function of Bitalino to start reading data
-
 					System.out.println("Enter MAC of Bitalino with ':' as the following structure xx:xx:xx:xx:xx:xx");
 					String MACBitalino = read.readLine();
-					
-					/*try {
-						String MACBitalino = read.readLine();
-					}catch IOException(ex){
-						System.out.println("Wrong Bitalino MAC address " +ex);
-					}*/
-					
+	
 					File filetxt = BitalinoDemo.collectDataBitalino(eld_name_string, MACBitalino);
-					fis = new FileInputStream(filetxt);
-					isr = new InputStreamReader(fis);
+					int size = (int) filetxt.getTotalSpace();
+					bis = new BufferedInputStream(new FileInputStream(filetxt));
+					bos = new BufferedOutputStream(os);
 					
+					//Envia nombre del archivo
+					dos = new DataOutputStream(os);
+					dos.writeUTF(filetxt.getName());
+					//UTF-8 es una codificación de caracteres que le asigna una cadena de bits determinada, a cada carácter Unicode y que puede leerse como un número binario. 
 					
+					byte[] bytesSent = new byte[size];
+					int inData;
+					while((inData = bis.read(bytesSent)) != -1) {
+						bos.write(bytesSent, 0, inData);
+					}
 					
-					//TODO PASAR FILE A SERVER
+ 
 					
 					break;
 				case 2:
