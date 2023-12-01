@@ -167,7 +167,10 @@ public class ElderlyMenuResidencialArea {
 			System.out.println(doctores.get(i).toStringForPatients());
 		}
 		
-		Integer doctor_id = InputException.getInt("Put the id of your doctor: ");
+		System.out.println("Put the id of your doctor: ");
+		String text_doctor_id = read.readLine();
+		int doctor_id = Integer.parseInt(text_doctor_id);
+		//Integer doctor_id = InputException.getInt("Put the id of your doctor: ");
 		String username = "" + dni;
 		
 		
