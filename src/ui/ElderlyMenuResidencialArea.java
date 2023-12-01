@@ -255,13 +255,43 @@ public class ElderlyMenuResidencialArea {
 					pw.println("searchElderlyNameById"); 
 					pw.println(eld_id);
 					String eld_name_string = br.readLine();
-
+					
+					
+					//PRINTS LISTS OF TASK AND THEIR ID TO ENTER DESIRED TASK
+					pw.println("seeTasks"); 
+					pw.println(eld_id);
+					
+					ArrayList <Task> tasks = new ArrayList<>();
+					String cantidad_tasks_text=br.readLine();
+					int cantidad_tasks=Integer.parseInt(cantidad_tasks_text);
+					for(int i = 0; i < cantidad_tasks; i++) {
+						
+						String tasks_text=br.readLine();
+						Task task=new Task(tasks_text);
+						tasks.add(task);
+					}
+					
+					System.out.println("List of tasks: " + tasks);
+					
+					
+					System.out.println("Enter id of the task you want to perform");
+					String task_id_text = read.readLine();
+					int task_id = Integer.parseInt(task_id_text);
+					
+					
+					//find task duration from elderly Id
+					pw.println("searchTaskDurationByELDid"); 
+					
+					pw.println(task_id);
+					String duration_text = br.readLine();
+					int duration = Integer.parseInt(duration_text);
+					
 					
 					//Calls the function of Bitalino to start reading data
 					System.out.println("Enter MAC of Bitalino with ':' as the following structure xx:xx:xx:xx:xx:xx");
 					String MACBitalino = read.readLine();
 	
-					File filetxt = BitalinoDemo.collectDataBitalino(eld_name_string, MACBitalino);
+					File filetxt = BitalinoDemo.collectDataBitalino(eld_name_string, MACBitalino, duration);
 					
 					//propuesta mari: sabemos hacer sockets con string
 					//leemos linea a linea el fichero y lo vamos mandando en sockets
@@ -278,16 +308,16 @@ public class ElderlyMenuResidencialArea {
 					pw.println("seeTasks"); //find list task from doctor id
 					pw.println(elderly_id);
 					
-					ArrayList <Task> tasks = new ArrayList<>();
-					String cantidad_tasks_text=br.readLine();
-					int cantidad_tasks=Integer.parseInt(cantidad_tasks_text);
-					for(int i = 0; i < cantidad_tasks; i++) {
+					ArrayList <Task> tasks2 = new ArrayList<>();
+					String cantidad_tasks_text2=br.readLine();
+					int cantidad_tasks2=Integer.parseInt(cantidad_tasks_text2);
+					for(int i = 0; i < cantidad_tasks2; i++) {
 						
 						String tasks_text=br.readLine();
-						Task task=new Task(tasks_text);
-						tasks.add(task);
+						Task task2=new Task(tasks_text);
+						tasks2.add(task2);
 					}
-					System.out.println("List of tasks: " + tasks);
+					System.out.println("List of tasks: " + tasks2);
 					break;
 				
 

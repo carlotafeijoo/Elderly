@@ -26,7 +26,7 @@ public class BitalinoDemo {
     public static Frame[] frame;
 
     //public static void main(String[] args) {
-    public static File collectDataBitalino(String name, String mac) { //DNI will be the name of the file
+    public static File collectDataBitalino(String name, String mac, int recording_minutes) { //DNI will be the name of the file
 
         BITalino bitalino = null;
         
@@ -62,11 +62,7 @@ public class BitalinoDemo {
             bitalino.start(channelsToAcquire);
 
             //CREATE FILE TO SAVE DATA
-            //directory + name file --> TODO we should ask for the name of the file to the patient
-            //File file = new File("C:\\Users\\marta\\Desktop\\EjemploBitalino", "ejemplo2.h5");
             String diract = System.getProperty("user.dir"); // find where the program is executing
-            //System.out.println("dir actual: "+diract);
-            
             String dirfolder = diract +"\\recordstxt";
             
             //TO HAVE THE CODE CLEAN MAYBE THE FILE DECLARATION SHOULD BE OUTSIDE THE TRY-CATCH
@@ -101,18 +97,15 @@ public class BitalinoDemo {
             String filename = name+ "_" + date_time_string + ".txt";
 
             filetxt = new File(dirfolder, filename);
-            //filetxt = new File(diract, "ejemplo2.txt");
-            
-            //socket for file .h5
-            /*outh5 = new FileOutputStream(fileh5);
-            datah5 = new DataOutputStream(outh5);*/
             
             //socket for file .txt
             outtxt = new FileOutputStream(filetxt);
             datatxt = new DataOutputStream(outtxt);
             
-            //Read in total 10000000 times
-            for (int j = 0; j < 10; j++) { //WE PUT 10 SO IT WAS EASIER FOR US TO MAKE TRIALS --> it will read 160 samples: 16 samples/bloc, 10 blocks
+            int recording_sec = recording_minutes*60;
+            //pasamos los minutos por segundos. Cada bloque es un segundo
+            	
+            for (int j = 0; j < recording_sec; j++) { //WE PUT 10 SO IT WAS EASIER FOR US TO MAKE TRIALS --> it will read 160 samples: 16 samples/bloc, 10 blocks
 
                 //Each time read a block of 10 samples 
                 int block_size=16; //WE PUT 16 SINCE OPENSIGNAL WORKS WITH BLOCKS OF 16
@@ -130,15 +123,6 @@ public class BitalinoDemo {
                     //  + frame[i].analog[4] + " "
                     //  + frame[i].analog[5]
                     );
-                    
-                    //THIS IS WHAT WE ARE SAVING IN THE FILE .H5
-                    /*datah5.writeBytes(/*(j * block_size + i)" seq: "* + frame[i].seq + "\t" 
-                            + frame[i].analog[0] + "\t"
-                            + frame[i].analog[1] + "\t"
-                            + frame[i].analog[2] + "\t"
-                            + frame[i].analog[3] + "\t"
-                            + frame[i].analog[4] + "\t"
-                            + frame[i].analog[5] + "\n");*/
 
                     //THE SAME IS SAVE AS .TXT
                     datatxt.writeBytes(/*(j * block_size + i)" seq: "*/ + frame[i].seq + "\t" 
@@ -183,21 +167,6 @@ public class BitalinoDemo {
         		ex.printStackTrace();
             }
             
-            /*try { //close DataOutputStream(datah5)
-            	if(datah5 != null) {
-            		datah5.close();
-            	}
-        	} catch (IOException ex) {
-        		ex.printStackTrace();
-            }
-            try { //close FileOutputStream(fileh5);
-            	if(outh5 !=null) {
-            		outh5.close();
-            	}
-            } catch (IOException ex) {
-        		ex.printStackTrace();
-            }*/
-            
         }
         return filetxt;
 
@@ -210,7 +179,9 @@ public class BitalinoDemo {
     	//String MAC = "20:16:07:18:13:61";
     	String MAC = "98:D3:41:FD:4E:E8";
     	
-    	File filetry = bitdemo.collectDataBitalino("AlbertoMarquez", MAC);
+    	int rec_min = 1;
+    	
+    	File filetry = bitdemo.collectDataBitalino("AlbertoMarquez", MAC, rec_min);
     	System.out.println(filetry.getName());
 //    	int file_size = (int) filetry.length();
 //    	System.out.println(file_size);

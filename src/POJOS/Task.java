@@ -10,6 +10,8 @@ public class Task {
 	private int duration;
 	private int elderly_id;
 
+	//duration MUST be stored in mins
+	
 	public Task() {
 		super();
 	}
@@ -47,6 +49,11 @@ public class Task {
 		this.doctor_id = duration;
 	}
 
+	public Task(int task_id) {
+		super();
+		this.task_id = task_id;
+		
+	}
 
 	//AÑADIDO POR MARI (SUPONGO QUE ESTARA BIEN)
 	//"Task [task_id=" + task_id + ", description=" + description + ", doctor_id=" + doctor_id + ", duration="
