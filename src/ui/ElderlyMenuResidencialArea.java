@@ -258,7 +258,7 @@ public class ElderlyMenuResidencialArea {
 					
 					
 					//PRINTS LISTS OF TASK AND THEIR ID TO ENTER DESIRED TASK
-					pw.println("seeTasks"); 
+					pw.println("seeTasksandId"); 
 					pw.println(eld_id);
 					
 					ArrayList <Task> tasks = new ArrayList<>();
