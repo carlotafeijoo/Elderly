@@ -251,7 +251,7 @@ public class ElderlyMenuResidencialArea {
 					String eld_id_string = br.readLine();
 					int eld_id = Integer.parseInt(eld_id_string);
 					
-					//find elderly DNI from elderly DNI
+					//find elderly name from elderly Id
 					pw.println("searchElderlyNameById"); 
 					pw.println(eld_id);
 					String eld_name_string = br.readLine();
@@ -262,37 +262,12 @@ public class ElderlyMenuResidencialArea {
 					String MACBitalino = read.readLine();
 	
 					File filetxt = BitalinoDemo.collectDataBitalino(eld_name_string, MACBitalino);
-					int file_size = (int) filetxt.length();
 					
-					//flujo de salida
-					dos = new DataOutputStream(os);
-					//bis = new BufferedInputStream(new FileInputStream(filetxt));
-					//bos = new BufferedOutputStream(os);
-					
-					//Envia nombre del archivo
-					dos.writeUTF(filetxt.getName());
-					//UTF-8 es una codificación de caracteres que le asigna una cadena de bits determinada, a cada carácter Unicode y que puede leerse como un número binario. 
-					
-					//envia tamano archivo
-					dos.writeInt(file_size);
-					
-					fis = new FileInputStream(filetxt);
-					bis = new BufferedInputStream(fis);
-					bos = new 	BufferedOutputStream(os);
-					
-					byte[] bytesSent = new byte[file_size];
-					bis.read(bytesSent);
-					
-					for (int i=0; i < bytesSent.length; i++) {
-						bos.write(bytesSent[i]);
-					}
-					/*while((inData = bis.read(bytesSent)) != -1) {
-						bos.write(bytesSent, 0, inData);
-					}*/
-					
- 
-					
+					//propuesta mari: sabemos hacer sockets con string
+					//leemos linea a linea el fichero y lo vamos mandando en sockets
+					readAndSendrecord(filetxt);
 					break;
+					
 				case 2:
 					pw.println("searchElderlyIdfromUId"); //find id doctor from User id
 					pw.println(User_id);
@@ -329,6 +304,69 @@ public class ElderlyMenuResidencialArea {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	private static void readAndSendrecord(File filetxt) {
+		//la funcion la he sacado del codigo de Java para leer ficheros
+		//le mandamos el nombre del fichero
+		String name = filetxt.getName();
+		pw.println(name);
+		
+		//leemos el fichero linea a linea
+        FileInputStream fileinputstream = null;
+        InputStreamReader inputstreamreader = null;
+        BufferedReader bufferedreader = null;
+        try {
+            fileinputstream = new FileInputStream(filetxt);
+            inputstreamreader = new InputStreamReader(fileinputstream);
+            bufferedreader = new BufferedReader(inputstreamreader);
+            String texto = "";
+            String stringleido;
+            while (true) {
+                stringleido = bufferedreader.readLine();
+                if (stringleido == null) {//si llega al final del fichero, se sale del bucle antes de que null se guarde en el string texto
+                	break;
+                }
+                //texto = texto + stringleido + "\n"; //ponemos el \n para que por cada linea que lee readLine para que haya un caracter sobre el que pueda actuar splitPoblacion
+                //no podemos poner un intro como separacion de las lineas porque el socket identifica \n como terminacion y solo se copia la primera linea del txt
+                texto = texto + stringleido + ",";
+                
+            }
+            //System.out.println(texto);
+            //una vez hemos salido del bucle, texto contiene todo el contenido del fichero
+            //lo mandamos en un socket
+            pw.println(texto);
+            
+            
+        } catch (IOException ioe) {
+            System.out.println("Error durante el proceso\t" + ioe);
+        } finally {
+            try {  //se cierran en sentido contrario al que se han abierto
+                if (bufferedreader != null) {
+                    bufferedreader.close();
+                }
+            } catch (IOException ioe) {
+                System.out.println("Error durante el proceso\t" + ioe);
+            }
+            try {
+                if (inputstreamreader != null) {
+                    inputstreamreader.close();
+                }
+            } catch (IOException ioe) {
+                System.out.println("Error durante el proceso\t" + ioe);
+            }
+            try {
+                if (fileinputstream != null) {
+                    fileinputstream.close();
+                }
+            } catch (IOException ioe) {
+                System.out.println("Error durante el proceso\t" + ioe);
+            }
+
+        }
+		
+	}
+
 
 	
 }

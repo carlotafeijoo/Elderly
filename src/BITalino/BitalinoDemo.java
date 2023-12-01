@@ -1,10 +1,13 @@
 package BITalino;
 
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -203,13 +206,24 @@ public class BitalinoDemo {
     public static void main(String[] args) {
     	BitalinoDemo bitdemo = new BitalinoDemo();
     	
-    	String MAC = "20:17:11:20:51:54";
+    	//String MAC = "20:17:11:20:51:54";
+    	//String MAC = "20:16:07:18:13:61";
+    	String MAC = "98:D3:41:FD:4E:E8";
     	
     	File filetry = bitdemo.collectDataBitalino("AlbertoMarquez", MAC);
-    	System.out.println(filetry);
+    	System.out.println(filetry.getName());
+//    	int file_size = (int) filetry.length();
+//    	System.out.println(file_size);
+    	
+    	System.out.println("--------------");
+    	//readAndSendrecord(filetry);
+    	
+    	
     	
     	
     }
+    
+	
     
 
 }
