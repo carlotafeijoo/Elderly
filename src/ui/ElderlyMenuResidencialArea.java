@@ -172,9 +172,10 @@ public class ElderlyMenuResidencialArea {
 		int doctor_id = Integer.parseInt(text_doctor_id);
 		//Integer doctor_id = InputException.getInt("Put the id of your doctor: ");
 		String username = "" + dni;
-		
+		System.out.println(doctor_id);
 		
 		Elderly elderly = new Elderly(name, dni, dob, doctor_id);
+		System.out.println("Elderly main " + elderly);
 		
 		String password = InputException.getString("Password: ");
 		
@@ -221,7 +222,6 @@ public class ElderlyMenuResidencialArea {
 			pw.println(elderly_id);
 
 			String elderly_text = br.readLine();
-
 			Elderly elderly = new Elderly(elderly_text);
 
 			
@@ -311,16 +311,20 @@ public class ElderlyMenuResidencialArea {
 					pw.println("seeTasks"); //find list task from doctor id
 					pw.println(elderly_id);
 					
-					ArrayList <Task> tasks2 = new ArrayList<>();
-					String cantidad_tasks_text2=br.readLine();
-					int cantidad_tasks2=Integer.parseInt(cantidad_tasks_text2);
-					for(int i = 0; i < cantidad_tasks2; i++) {
+					List <Task> tasks2 = new ArrayList<>();
+					String task_size_txt = br.readLine();
+					int task_size = Integer.parseInt(task_size_txt);
+					
+					for(int i = 0; i < task_size; i++) {
 						
 						String tasks_text=br.readLine();
 						Task task2=new Task(tasks_text);
 						tasks2.add(task2);
 					}
 					System.out.println("List of tasks: " + tasks2);
+					
+					
+					
 					break;
 				
 
