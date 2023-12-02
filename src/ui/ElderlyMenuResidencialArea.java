@@ -188,7 +188,8 @@ public class ElderlyMenuResidencialArea {
 		pw.println(password);
 		pw.println(elderly.toString());
 
-		br.readLine();
+		System.out.println(br.readLine());
+		
 
 	}
 	
