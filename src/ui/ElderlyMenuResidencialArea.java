@@ -175,7 +175,11 @@ public class ElderlyMenuResidencialArea {
 		System.out.println(doctor_id);
 		
 		Elderly elderly = new Elderly(name, dni, dob, doctor_id);
-		System.out.println("Elderly main " + elderly);
+		
+		//ESTO ESTA MAL
+		//va a imprimir un elderly_id = 0 porque aqui no esta mandando ningun id al constructor y tampoco pasa por la base de datos antes de imprimirlo
+		//System.out.println("Elderly main " + elderly);
+		//mirar en la base de datos que se haya metido bien (pero eso si que funciona)
 		
 		String password = InputException.getString("Password: ");
 		
