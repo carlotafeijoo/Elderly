@@ -269,11 +269,13 @@ public class ElderlyMenuResidencialArea {
 					pw.println(User_id);
 					String eld_id_string = br.readLine();
 					int eld_id = Integer.parseInt(eld_id_string);
+					System.out.println(eld_id);
 					
 					//find elderly name from elderly Id
 					pw.println("searchElderlyNameById"); 
 					pw.println(eld_id);
 					String eld_name_string = br.readLine();
+					System.out.println(eld_name_string);
 					
 					
 					//PRINTS LISTS OF TASK AND THEIR ID TO ENTER DESIRED TASK
@@ -283,6 +285,7 @@ public class ElderlyMenuResidencialArea {
 					ArrayList <Task> tasks = new ArrayList<>();
 					String cantidad_tasks_text=br.readLine();
 					int cantidad_tasks=Integer.parseInt(cantidad_tasks_text);
+					
 					for(int i = 0; i < cantidad_tasks; i++) {
 						
 						String tasks_text=br.readLine();
@@ -301,7 +304,7 @@ public class ElderlyMenuResidencialArea {
 					//find task duration from elderly Id
 					pw.println("searchTaskDurationByELDid"); 
 					
-					pw.println(task_id);
+					pw.println(task_id_text);
 					String duration_text = br.readLine();
 					int duration = Integer.parseInt(duration_text);
 					
