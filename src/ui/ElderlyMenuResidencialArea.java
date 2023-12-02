@@ -200,13 +200,25 @@ public class ElderlyMenuResidencialArea {
 
 		String role_text = br.readLine();
 		String user_text = br.readLine();
-		User u = new User(user_text);
+		
+		User u = null;
+
+		if(user_text.equalsIgnoreCase("error")) {
+			System.out.println("User not found");
+			mainMenu();
+		}
+		else {
+			u = new User(user_text);
+			u.setRole(new Role(role_text));
+		}
+		
+		/*User u = new User(user_text);
 		u.setRole(new Role(role_text));
 
 		if (u == null) {
 			System.out.println("User not found");
 			mainMenu();
-		}
+		}*/
 
 		if (u != null && u.getRole().getName().equals("Elderly")) {
 			Integer id = u.getId();
