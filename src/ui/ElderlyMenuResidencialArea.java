@@ -28,16 +28,25 @@ public class ElderlyMenuResidencialArea {
 
 
 	public static void main(String[] args) throws IOException {
-
-		System.out.println("WELCOME TO THE RESIDENCIAL AREA DATA BASE");
 		
-		so = new Socket("localhost", 9009);
+		so = new Socket("localhost", 9009); //cambiar localhost x IP_server
 		//Client:reads and writes lines
 		br = new BufferedReader(new InputStreamReader(so.getInputStream()));
 		os = so.getOutputStream();
 		pw = new PrintWriter(os, true);
-
-		mainMenu();
+		
+		String control_sms = br.readLine();	
+		System.out.println(control_sms);
+	
+		if (control_sms.equalsIgnoreCase("MODE: [Server in standby]")) {
+		
+			System.out.println("Wait until Server is accessible");
+			
+		}else {
+			
+			System.out.println("WELCOME TO PATIENT THE RESIDENCIAL AREA DATA BASE");
+			mainMenu();
+		}
 
 	}
 	
@@ -64,32 +73,35 @@ public class ElderlyMenuResidencialArea {
 
 	public static void mainMenu() {
 		try {
-
+		
+		
 			int option;
 			do {
 				System.out.println("MAIN MENU ");
 				System.out.println("1. Enter ");
 				System.out.println("2. Exit ");
 				option = InputException.getInt("Introduce the number choice:  ");
-
+				
+		
 				switch (option) {
-
+		
 				case 1:
 					loginElderly();
 					break;
-
+		
 				case 2:
 					System.out.println("YOU HAVE EXIT THE RESIDENCIAL AREA DATA BASE");
 					pw.println("stop");
 					releaseResources(pw, br, os, so);
-
+		
 					System.exit(3);
 					break;
-
+		
 				default:
 					break;
 				}
 			} while (true);
+		
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -116,7 +128,7 @@ public class ElderlyMenuResidencialArea {
 			break;
 
 		case 3:
-			// EXIT
+			// BACK
 			mainMenu();
 			break;
 
@@ -221,13 +233,6 @@ public class ElderlyMenuResidencialArea {
 			u.setRole(new Role(role_text));
 		}
 		
-		/*User u = new User(user_text);
-		u.setRole(new Role(role_text));
-
-		if (u == null) {
-			System.out.println("User not found");
-			mainMenu();
-		}*/
 
 		if (u != null && u.getRole().getName().equals("Elderly")) {
 			Integer id = u.getId();
