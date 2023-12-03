@@ -387,6 +387,7 @@ public class ElderlyMenuResidencialArea {
 	private static void readAndSendrecord(File filetxt) {
 		//la funcion la he sacado del codigo de Java para leer ficheros
 		//le mandamos el nombre del fichero
+		pw.println("storeRecord");
 		String name = filetxt.getName();
 		pw.println(name);
 		
