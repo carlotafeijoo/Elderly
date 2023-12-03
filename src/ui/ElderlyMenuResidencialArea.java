@@ -170,25 +170,29 @@ public class ElderlyMenuResidencialArea {
 		System.out.println("Put the id of your doctor: ");
 		String text_doctor_id = read.readLine();
 		int doctor_id = Integer.parseInt(text_doctor_id);
-		//Integer doctor_id = InputException.getInt("Put the id of your doctor: ");
-		String username = "" + dni;
-		System.out.println(doctor_id);
-		
-		Elderly elderly = new Elderly(name, dni, dob, doctor_id);
-		
-		//ESTO ESTA MAL
-		//va a imprimir un elderly_id = 0 porque aqui no esta mandando ningun id al constructor y tampoco pasa por la base de datos antes de imprimirlo
-		//System.out.println("Elderly main " + elderly);
-		//mirar en la base de datos que se haya metido bien (pero eso si que funciona)
-		
-		String password = InputException.getString("Password: ");
-		
-		pw.println("addElderly");
-		pw.println(username);
-		pw.println(password);
-		pw.println(elderly.toString());
+		if(checklist(doctor_id, doctores)==true) {
+			//Integer doctor_id = InputException.getInt("Put the id of your doctor: ");
+			String username = "" + dni;
+			System.out.println(doctor_id);
+			
+			Elderly elderly = new Elderly(name, dni, dob, doctor_id);
+			
+			//ESTO ESTA MAL
+			//va a imprimir un elderly_id = 0 porque aqui no esta mandando ningun id al constructor y tampoco pasa por la base de datos antes de imprimirlo
+			//System.out.println("Elderly main " + elderly);
+			//mirar en la base de datos que se haya metido bien (pero eso si que funciona)
+			
+			String password = InputException.getString("Password: ");
+			
+			pw.println("addElderly");
+			pw.println(username);
+			pw.println(password);
+			pw.println(elderly.toString());
 
-		System.out.println(br.readLine());
+			System.out.println(br.readLine());
+		}else {
+			System.out.println("Sorry, the doctor id that you introduced is not valid");
+		}
 		
 
 	}
@@ -325,11 +329,10 @@ public class ElderlyMenuResidencialArea {
 					pw.println("searchElderlyIdfromUId"); //find id doctor from User id
 					pw.println(User_id);
 					String elderly_id_string = br.readLine();
-					int elderly_id = Integer.parseInt(elderly_id_string);
 					
 					//List<Task> tasksList = null;// tasksManager.getListOfTasks(doctorAllTask_id);
 					pw.println("seeTasks"); //find list task from doctor id
-					pw.println(elderly_id);
+					pw.println(elderly_id_string);
 					
 					List <Task> tasks2 = new ArrayList<>();
 					String task_size_txt = br.readLine();
@@ -341,12 +344,13 @@ public class ElderlyMenuResidencialArea {
 						Task task2=new Task(tasks_text);
 						tasks2.add(task2);
 					}
+					if(tasks2.isEmpty()==true) {
+						System.out.println("Sorry, at this time you dont have any task associated");
+						break;
+					}else {
 					System.out.println("List of tasks: " + tasks2);
-					
-					
-					
 					break;
-				
+					}
 
 				case 3:
 					loginElderly();
@@ -362,7 +366,15 @@ public class ElderlyMenuResidencialArea {
 		}
 	}
 	
-	
+	public static boolean checklist(int doc_id,  List <Doctor> doc) {
+		boolean check= false;
+		for (int i=0; i < doc.size();i++ ) {
+			if (doc.get(i).getdoctor_id() == doc_id) {
+				check = true;
+			}
+		}
+		return check;
+	}
 	private static void readAndSendrecord(File filetxt) {
 		//la funcion la he sacado del codigo de Java para leer ficheros
 		//le mandamos el nombre del fichero
