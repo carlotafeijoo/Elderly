@@ -35,6 +35,10 @@ public class ElderlyMenuResidencialArea {
 		os = so.getOutputStream();
 		pw = new PrintWriter(os, true);
 		
+		System.out.println("WELCOME TO PATIENT THE RESIDENCIAL AREA DATA BASE");
+		mainMenu();
+		
+		/*TODO Cambios para lo del stand by
 		String control_sms = br.readLine();	
 		System.out.println(control_sms);
 	
@@ -46,7 +50,7 @@ public class ElderlyMenuResidencialArea {
 			
 			System.out.println("WELCOME TO PATIENT THE RESIDENCIAL AREA DATA BASE");
 			mainMenu();
-		}
+		}*/
 
 	}
 	
