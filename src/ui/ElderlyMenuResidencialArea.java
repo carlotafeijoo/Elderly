@@ -38,20 +38,6 @@ public class ElderlyMenuResidencialArea {
 		System.out.println("WELCOME TO PATIENT THE RESIDENCIAL AREA DATA BASE");
 		mainMenu();
 		
-		/*TODO Cambios para lo del stand by
-		String control_sms = br.readLine();	
-		System.out.println(control_sms);
-	
-		if (control_sms.equalsIgnoreCase("MODE: [Server in standby]")) {
-		
-			System.out.println("Wait until Server is accessible");
-			
-		}else {
-			
-			System.out.println("WELCOME TO PATIENT THE RESIDENCIAL AREA DATA BASE");
-			mainMenu();
-		}*/
-
 	}
 	
 	private static void releaseResources(PrintWriter printWriter, BufferedReader br, OutputStream outputStream,
@@ -253,7 +239,6 @@ public class ElderlyMenuResidencialArea {
 
 			String elderly_text = br.readLine();
 			Elderly elderly = new Elderly(elderly_text);
-
 			
 			System.out.println(elderly);
 			System.out.println("Login successful!");
