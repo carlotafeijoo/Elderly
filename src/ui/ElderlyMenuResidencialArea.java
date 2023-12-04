@@ -261,7 +261,8 @@ public class ElderlyMenuResidencialArea {
 
 				System.out.println("1. Record signal.  ");
 				System.out.println("2. See my tasks");
-				System.out.println("3. Back");
+				System.out.println("3. Add symptoms");
+				System.out.println("4. Back");
 
 				choice = InputException.getInt("Introduce your choice: ");
 
@@ -352,11 +353,29 @@ public class ElderlyMenuResidencialArea {
 					}
 
 				case 3:
+					pw.println("searchElderlyIdfromUId"); 
+					pw.println(User_id);
+					String e_id_string = br.readLine();
+					
+					
+					System.out.println("\nIntroduce your symptoms:");
+					String symptom = read.readLine();
+					
+					pw.println("addSymptoms");
+					pw.println(e_id_string);
+					pw.println(symptom);
+					System.out.println("Symptoms updated");
+					
+					break;
+				
+				case 4:
 					loginElderly();
 					break;
-
+					
 				default:
-					break;
+					System.out.println("\nPlease, introduce option from 1 to 4.\n");
+					elderlyMenu(User_id);
+					
 				}
 			} while (true);
 
