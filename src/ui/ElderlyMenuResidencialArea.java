@@ -321,7 +321,7 @@ public class ElderlyMenuResidencialArea {
 					
 					//propuesta mari: sabemos hacer sockets con string
 					//leemos linea a linea el fichero y lo vamos mandando en sockets
-					readAndSendrecord(filetxt);
+					readAndSendrecord(filetxt,task_id,eld_id);
 					break;
 					
 				case 2:
@@ -405,13 +405,15 @@ public class ElderlyMenuResidencialArea {
 	}
 	
 
-	private static void readAndSendrecord(File filetxt) {
+	private static void readAndSendrecord(File filetxt, int task_id, int elderly_id) {
 		//la funcion la he sacado del codigo de Java para leer ficheros
 		//le mandamos el nombre del fichero
 		pw.println("storeRecord");
 		String name = filetxt.getName();
 		pw.println(name);
-		
+		pw.println(task_id);
+		pw.println(elderly_id);
+
 		//leemos el fichero linea a linea
         FileInputStream fileinputstream = null;
         InputStreamReader inputstreamreader = null;
