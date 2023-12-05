@@ -35,7 +35,7 @@ public class ElderlyMenuResidencialArea {
 		os = so.getOutputStream();
 		pw = new PrintWriter(os, true);
 		
-		System.out.println("WELCOME TO PATIENT THE RESIDENCIAL AREA DATA BASE");
+		System.out.println("\nWELCOME TO PATIENT THE RESIDENCIAL AREA DATA BASE");
 		mainMenu();
 		
 	}
@@ -70,7 +70,7 @@ public class ElderlyMenuResidencialArea {
 				System.out.println("MAIN MENU ");
 				System.out.println("1. Enter ");
 				System.out.println("2. Exit ");
-				option = InputException.getInt("Introduce the number choice:  ");
+				option = InputException.getInt("\nIntroduce the number choice:  ");
 				
 		
 				switch (option) {
@@ -100,10 +100,11 @@ public class ElderlyMenuResidencialArea {
 	}
 	
 	private static void loginElderly() throws Exception {
+		System.out.println("\n");
 		System.out.println("1. Register");
 		System.out.println("2. Log in ");
 		System.out.println("3. Back");
-		int choice = InputException.getInt(" Introduce the number of your choice: ");
+		int choice = InputException.getInt("\nIntroduce the number of your choice: ");
 
 		switch (choice) {
 		case 1:
@@ -129,7 +130,7 @@ public class ElderlyMenuResidencialArea {
 	
 	public static void registerElderly() throws Exception {
 
-		System.out.println("Input the information of the new elderly: ");
+		System.out.println("\nInput the information of the new elderly: ");
 
 		String name = InputException.getString("Name: ");
 
@@ -143,7 +144,7 @@ public class ElderlyMenuResidencialArea {
 		int day = Integer.parseInt(read.readLine());
 		
 		if (checkDate(year, month, day)==false) {
-			System.out.println("Sorry your date of birth is worng, try again \n");
+			System.out.println("\nSorry your date of birth is worng, try again \n");
 			
 		}else {
 		
@@ -152,7 +153,7 @@ public class ElderlyMenuResidencialArea {
 		java.util.Date utilDate = dateFormat.parse(dobStr);
 		java.sql.Date dob = new java.sql.Date(utilDate.getTime());
 
-		System.out.println("Your dni will be used as your username");
+		System.out.println("\nYour dni will be used as your username");
 		System.out.println("DNI without letter:  ");
 		int dni = Integer.parseInt(read.readLine());
 
@@ -174,7 +175,7 @@ public class ElderlyMenuResidencialArea {
 			System.out.println(doctores.get(i).toStringForPatients());
 		}
 		
-		System.out.println("Put the id of your doctor: ");
+		System.out.println("\nWrite the id of your doctor: ");
 		String text_doctor_id = read.readLine();
 		int doctor_id = Integer.parseInt(text_doctor_id);
 		if(checklist(doctor_id, doctores)==true) {
@@ -198,7 +199,7 @@ public class ElderlyMenuResidencialArea {
 
 			System.out.println(br.readLine());
 		}else {
-			System.out.println("Sorry, the doctor id that you introduced is not valid");
+			System.out.println("\nSorry, the doctor id that you introduced is not valid");
 		}
 		}
 
@@ -206,7 +207,7 @@ public class ElderlyMenuResidencialArea {
 	
 	public static void logIn() throws Exception {
 
-		System.out.println("Dni without letter:");
+		System.out.println("\nDni without letter:");
 		String username = read.readLine();
 		String password = InputException.getString("Password: ");
 
@@ -220,7 +221,7 @@ public class ElderlyMenuResidencialArea {
 		User u = null;
 
 		if(user_text.equalsIgnoreCase("error")) {
-			System.out.println("User not found");
+			System.out.println("\nUser not found");
 			mainMenu();
 		}
 		else {
@@ -246,7 +247,7 @@ public class ElderlyMenuResidencialArea {
 			Elderly elderly = new Elderly(elderly_text);
 			
 			System.out.println(elderly);
-			System.out.println("Login successful!");
+			System.out.println("\nLogin successful!");
 			elderlyMenu(u.getId());
 
 		}
@@ -258,13 +259,14 @@ public class ElderlyMenuResidencialArea {
 		try {
 			int choice;
 			do {
-
+				
+				System.out.println("\n");
 				System.out.println("1. Record signal.  ");
 				System.out.println("2. See my tasks");
 				System.out.println("3. Add symptoms");
 				System.out.println("4. Back");
 
-				choice = InputException.getInt("Introduce your choice: ");
+				choice = InputException.getInt("\nIntroduce your choice: ");
 
 				switch (choice) {
 
@@ -280,7 +282,7 @@ public class ElderlyMenuResidencialArea {
 					pw.println("searchElderlyNameById"); 
 					pw.println(eld_id);
 					String eld_name_string = br.readLine();
-					System.out.println(eld_name_string);
+					System.out.println("\n" +eld_name_string);
 					
 					
 					//PRINTS LISTS OF TASK AND THEIR ID TO ENTER DESIRED TASK
@@ -298,10 +300,10 @@ public class ElderlyMenuResidencialArea {
 						tasks.add(task);
 					}
 					
-					System.out.println("List of tasks: " + tasks);
+					System.out.println("\nList of tasks: " + tasks);
 					
 					
-					System.out.println("Enter id of the task you want to perform");
+					System.out.println("\nEnter id of the task you want to perform");
 					String task_id_text = read.readLine();
 					int task_id = Integer.parseInt(task_id_text);
 					
@@ -315,7 +317,7 @@ public class ElderlyMenuResidencialArea {
 					
 					
 					//Calls the function of Bitalino to start reading data
-					System.out.println("Enter MAC of Bitalino with ':' as the following structure xx:xx:xx:xx:xx:xx");
+					System.out.println("\nEnter MAC of Bitalino with ':' as the following structure xx:xx:xx:xx:xx:xx");
 					String MACBitalino = read.readLine();
 	
 					File filetxt = BitalinoDemo.collectDataBitalino(eld_name_string, MACBitalino, duration);
@@ -345,10 +347,10 @@ public class ElderlyMenuResidencialArea {
 						tasks2.add(task2);
 					}
 					if(tasks2.isEmpty()==true) {
-						System.out.println("Sorry, at this time you dont have any task associated");
+						System.out.println("\nSorry, at this time you dont have any task associated");
 						break;
 					}else {
-					System.out.println("List of tasks: " + tasks2);
+					System.out.println("\nList of tasks: " + tasks2);
 					break;
 					}
 
@@ -364,7 +366,7 @@ public class ElderlyMenuResidencialArea {
 					pw.println("addSymptoms");
 					pw.println(e_id_string);
 					pw.println(symptom);
-					System.out.println("Symptoms updated");
+					System.out.println("\nSymptoms updated");
 					
 					break;
 				
@@ -460,28 +462,28 @@ public class ElderlyMenuResidencialArea {
             
             
         } catch (IOException ioe) {
-            System.out.println("Error durante el proceso\t" + ioe);
+            System.out.println("\nError durante el proceso\t" + ioe);
         } finally {
             try {  //se cierran en sentido contrario al que se han abierto
                 if (bufferedreader != null) {
                     bufferedreader.close();
                 }
             } catch (IOException ioe) {
-                System.out.println("Error durante el proceso\t" + ioe);
+                System.out.println("\nError durante el proceso\t" + ioe);
             }
             try {
                 if (inputstreamreader != null) {
                     inputstreamreader.close();
                 }
             } catch (IOException ioe) {
-                System.out.println("Error durante el proceso\t" + ioe);
+                System.out.println("\nError durante el proceso\t" + ioe);
             }
             try {
                 if (fileinputstream != null) {
                     fileinputstream.close();
                 }
             } catch (IOException ioe) {
-                System.out.println("Error durante el proceso\t" + ioe);
+                System.out.println("\nError durante el proceso\t" + ioe);
             }
 
         }
