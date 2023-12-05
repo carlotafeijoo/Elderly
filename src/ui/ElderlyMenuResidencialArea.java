@@ -358,7 +358,7 @@ public class ElderlyMenuResidencialArea {
 					String e_id_string = br.readLine();
 					
 					
-					System.out.println("\nIntroduce your symptoms:");
+					System.out.println("\nIntroduce all your symptoms:");
 					String symptom = read.readLine();
 					
 					pw.println("addSymptoms");
