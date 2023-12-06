@@ -305,9 +305,13 @@ public class ElderlyMenuResidencialArea {
 
 					System.out.println("\nList of tasks: ");
 					for (Task t : tasks) {
-						System.out.println(t);
+						System.out.println(t.getTask_id()+", " + t.getDescription());
 					}
 
+					if (tasks.isEmpty()) {
+						System.out.println("\nYou don't have any tasks assigned");
+						break;
+					}
 
 					System.out.println("\nEnter id of the task you want to perform");
 					String task_id_text = read.readLine();
