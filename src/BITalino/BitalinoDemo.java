@@ -64,21 +64,7 @@ public class BitalinoDemo {
             //CREATE FILE TO SAVE DATA
             String diract = System.getProperty("user.dir"); // find where the program is executing
             String dirfolder = diract +"\\recordstxt";
-            
-            //TO HAVE THE CODE CLEAN MAYBE THE FILE DECLARATION SHOULD BE OUTSIDE THE TRY-CATCH
-            //File fileh5 = new File(diract, "ejemplo2.h5"); //.h5 is how the files are save with open signals --> we tried open it with opensignals but it didnt work 
-            
-            /*LocalDate fecha = LocalDate.now();
-            LocalTime hora = LocalTime.now();
-            
-            LocalDateTime fecha_hora = LocalDateTime.of(fecha, hora);
-            
-            LocalDate localDate = LocalDate.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy"); // 05 May 1988
-            //String formattedString = localDate.format(formatter);
-            String fecha_hora_string = fecha_hora.format(formatter);*/
-
-            //String filename = dni + fecha_hora_string;
+      
             
             //CREATION OF THE DATE AND TIME FOR OUR FILE
             LocalDate date = LocalDate.now();
@@ -103,12 +89,12 @@ public class BitalinoDemo {
             datatxt = new DataOutputStream(outtxt);
             
             int recording_sec = recording_minutes*60;
-            //pasamos los minutos por segundos. Cada bloque es un segundo
+            //From minutes to seconds. Each block is a second
             	
-            for (int j = 0; j < recording_sec; j++) { //WE PUT 10 SO IT WAS EASIER FOR US TO MAKE TRIALS --> it will read 160 samples: 16 samples/bloc, 10 blocks
+            for (int j = 0; j < recording_sec; j++) { 
 
-                //Each time read a block of 10 samples 
-                int block_size=16; //WE PUT 16 SINCE OPENSIGNAL WORKS WITH BLOCKS OF 16
+                double block_size = 0.1/6;
+                // recording_Sec * 60 *(0.1/6) = recording_Sec
                 frame = bitalino.read(block_size);
 
                 System.out.println("size block: " + frame.length);

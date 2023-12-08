@@ -436,7 +436,7 @@ public class BITalino {
 		}
 	}
 	
-	public Frame[] read(int nSamples) throws BITalinoException 
+	public Frame[] read(double nSamples) throws BITalinoException 
 	{
                /** Reads acquisition frames from the device.
                 * This method returns when all requested frames are received from the device, or when a receive timeout occurs.
@@ -447,7 +447,7 @@ public class BITalino {
                 */   
 		try 
 		{
-			Frame[] frames = new Frame[nSamples];
+			Frame[] frames = new Frame[(int) nSamples];
 			byte[] buffer = new byte[number_bytes];
 			byte[] bTemp = new byte[1];
 			int i=0;
