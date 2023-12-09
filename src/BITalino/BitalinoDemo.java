@@ -99,16 +99,26 @@ public class BitalinoDemo {
 
                 System.out.println("size block: " + frame.length);
 
-                //Print the samples
+//                Print the samples
+//                /*for (int i = 0; i < frame.length; i++) {
+//                    System.out.println((j * block_size + i) + " seq: " + frame[i].seq + " "
+//                            + frame[i].analog[0] + " "
+//                            + frame[i].analog[1] + " "
+//                    + frame[i].analog[2] + " "
+//                    + frame[i].analog[3] + " "
+//                     + frame[i].analog[4] + " "
+//                     + frame[i].analog[5]
+//                    );*/
+//                
                 for (int i = 0; i < frame.length; i++) {
-                    System.out.println((j * block_size + i) + " seq: " + frame[i].seq + " "
-                            + frame[i].analog[0] + " "
-                            + frame[i].analog[1] + " "
-                    //  + frame[i].analog[2] + " "
-                    //  + frame[i].analog[3] + " "
-                    //  + frame[i].analog[4] + " "
-                    //  + frame[i].analog[5]
-                    );
+                    System.out.println( "\nseq: " + frame[i].seq + " "
+                    		+ frame[i].analog[0] + " "
+                    		+ frame[i].analog[1] + " "
+                    		+ frame[i].analog[2] + " "
+                    		+ frame[i].analog[3] + " "
+                    		+ frame[i].analog[4] + " "
+                    		+ frame[i].analog[5]
+                    		);
 
                     //THE SAME IS SAVE AS .TXT
                     datatxt.writeBytes(/*(j * block_size + i)" seq: "*/ + frame[i].seq + "\t" 
