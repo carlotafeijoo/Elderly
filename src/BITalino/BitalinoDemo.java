@@ -93,32 +93,31 @@ public class BitalinoDemo {
             for (int j = 0; j < recording_sec; j++) { 
 
                 //double block_size = 0.1/6;
-            	int block_size = 1;
-                // recording_Sec * (0.1/6) = recording_MIN
+            	int block_size = 16;
                 frame = bitalino.read(block_size);
 
-                System.out.println("size block: " + frame.length);
+                //System.out.println("size block: " + frame.length);
 
-//                Print the samples
-//                /*for (int i = 0; i < frame.length; i++) {
-//                    System.out.println((j * block_size + i) + " seq: " + frame[i].seq + " "
-//                            + frame[i].analog[0] + " "
-//                            + frame[i].analog[1] + " "
-//                    + frame[i].analog[2] + " "
-//                    + frame[i].analog[3] + " "
-//                     + frame[i].analog[4] + " "
-//                     + frame[i].analog[5]
-//                    );*/
-//                
+//               Print the samples
                 for (int i = 0; i < frame.length; i++) {
-                    System.out.println( "\nseq: " + frame[i].seq + " "
-                    		+ frame[i].analog[0] + " "
-                    		+ frame[i].analog[1] + " "
-                    		+ frame[i].analog[2] + " "
-                    		+ frame[i].analog[3] + " "
-                    		+ frame[i].analog[4] + " "
-                    		+ frame[i].analog[5]
-                    		);
+                    System.out.println((j * block_size + i) + " seq: " + frame[i].seq + " "
+                            + frame[i].analog[0] + " "
+                            + frame[i].analog[1] + " "
+                    + frame[i].analog[2] + " "
+                    + frame[i].analog[3] + " "
+                     + frame[i].analog[4] + " "
+                     + frame[i].analog[5]
+                    );
+                
+//                for (int i = 0; i < frame.length; i++) {
+//                    System.out.println( "\nseq: " + frame[i].seq + " -- "
+//                    		+ frame[i].analog[0] + " "
+//                    		+ frame[i].analog[1] + " "
+//                    		+ frame[i].analog[2] + " "
+//                    		+ frame[i].analog[3] + " "
+//                    		+ frame[i].analog[4] + " "
+//                    		+ frame[i].analog[5]
+//                    		);
 
                     //THE SAME IS SAVE AS .TXT
                     datatxt.writeBytes(/*(j * block_size + i)" seq: "*/ + frame[i].seq + "\t" 

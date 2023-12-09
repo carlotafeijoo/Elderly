@@ -431,7 +431,7 @@ public class ElderlyMenuResidencialArea {
 
 	public static boolean checkMAC(String mac) {
 
-		String pattern_str = "\\d{2}:\\d{2}:\\d{2}:\\d{2}:\\d{2}:\\d{2}";
+		String pattern_str = "\\w{2}:\\w{2}:\\w{2}:\\w{2}:\\w{2}:\\w{2}";
 		Pattern pattern = Pattern.compile(pattern_str);
 		Matcher matcher = pattern.matcher(mac);
 
