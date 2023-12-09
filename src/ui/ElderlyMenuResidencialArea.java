@@ -250,7 +250,14 @@ public class ElderlyMenuResidencialArea {
 			String elderly_text = br.readLine();
 			Elderly elderly = new Elderly(elderly_text);
 
-			System.out.println(elderly);
+			
+			System.out.println("\nThis is your user:");
+			System.out.println( "\tName = " + elderly.getName() +
+					"\n\tDNI = " + elderly.getDni() + 
+					"\n\tdoctor_id = " + elderly.getDoctor_id() + 
+					"\n\tdob = " + elderly.getDob() + 
+					"\n\tsymptoms = " + elderly.getSymptoms());
+			
 			System.out.println("\nLogin successful!");
 			elderlyMenu(u.getId());
 
@@ -331,21 +338,21 @@ public class ElderlyMenuResidencialArea {
 					//Calls the function of Bitalino to start reading data
 					System.out.println("\nEnter MAC of Bitalino");
 					String MACBitalino = " ";
-					
+
 					boolean pattern = false;
-						
+
 					while (pattern==false) {
 						System.out.println("Please, introduce a correct Bitalino MAC as the following structure xx:xx:xx:xx:xx:xx");
 						MACBitalino = read.readLine();
 						pattern = checkMAC(MACBitalino);
 					}
-					
+
 					File filetxt = BitalinoDemo.collectDataBitalino(eld_name_string, MACBitalino, duration);
 					readAndSendrecord(filetxt,task_id,eld_id);
 					break;
-				
 
-					
+
+
 
 				case 2:
 					System.out.println("\n\tSEE MY TASKS");
@@ -371,7 +378,10 @@ public class ElderlyMenuResidencialArea {
 						System.out.println("\nSorry, at this time you dont have any task associated");
 						break;
 					}else {
-						System.out.println("\nList of tasks: " + tasks2);
+						System.out.println("\nList of tasks: ");
+						for (Task t : tasks2) {
+							System.out.println(t);
+						}
 						break;
 					}
 
@@ -418,17 +428,17 @@ public class ElderlyMenuResidencialArea {
 		return check;
 	}
 
-	
+
 	public static boolean checkMAC(String mac) {
-		
+
 		String pattern_str = "\\d{2}:\\d{2}:\\d{2}:\\d{2}:\\d{2}:\\d{2}";
 		Pattern pattern = Pattern.compile(pattern_str);
-        Matcher matcher = pattern.matcher(mac);
-        
-        return matcher.matches();
-        	
+		Matcher matcher = pattern.matcher(mac);
+
+		return matcher.matches();
+
 	}
-	
+
 	public static boolean checkDate(int year, int month, int day) {
 		if (year < 1900 || year > 2024) {
 			return false;
@@ -457,8 +467,8 @@ public class ElderlyMenuResidencialArea {
 		}
 		return true;
 	}
-	
-	
+
+
 	private static void readAndSendrecord(File filetxt, int task_id, int elderly_id) {
 		//la funcion la he sacado del codigo de Java para leer ficheros
 		//le mandamos el nombre del fichero
