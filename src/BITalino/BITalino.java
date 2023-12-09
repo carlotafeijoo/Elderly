@@ -447,7 +447,7 @@ public class BITalino {
                 */   
 		try 
 		{
-			Frame[] frames = new Frame[(int) nSamples];
+			Frame[] frames = new Frame[nSamples];
 			byte[] buffer = new byte[number_bytes];
 			byte[] bTemp = new byte[1];
 			int i=0;
