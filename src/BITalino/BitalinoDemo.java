@@ -92,7 +92,8 @@ public class BitalinoDemo {
             	
             for (int j = 0; j < recording_sec; j++) { 
 
-                double block_size = 0.1/6;
+                //double block_size = 0.1/6;
+            	int block_size = 1;
                 // recording_Sec * (0.1/6) = recording_MIN
                 frame = bitalino.read(block_size);
 
@@ -160,10 +161,10 @@ public class BitalinoDemo {
     public static void main(String[] args) {
     	BitalinoDemo bitdemo = new BitalinoDemo();
     	
-    	String MAC = "20:18:08:08:01:81";
+    	//String MAC = "20:18:08:08:01:81";
     	//String MAC = "20:17:11:20:51:54";
     	//String MAC = "20:16:07:18:13:61";
-    	//String MAC = "98:D3:41:FD:4E:E8";
+    	String MAC = "98:D3:41:FD:4E:E8";
     	
     	int rec_min = 1;
     	
