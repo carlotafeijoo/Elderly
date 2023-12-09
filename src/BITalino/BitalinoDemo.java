@@ -170,10 +170,10 @@ public class BitalinoDemo {
     public static void main(String[] args) {
     	BitalinoDemo bitdemo = new BitalinoDemo();
     	
-    	//String MAC = "20:18:08:08:01:81";
+    	String MAC = "20:18:08:08:01:81";
     	//String MAC = "20:17:11:20:51:54";
     	//String MAC = "20:16:07:18:13:61";
-    	String MAC = "98:D3:41:FD:4E:E8";
+    	//String MAC = "98:D3:41:FD:4E:E8";
     	
     	int rec_min = 1;
     	

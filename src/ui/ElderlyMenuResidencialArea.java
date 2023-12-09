@@ -134,6 +134,8 @@ public class ElderlyMenuResidencialArea {
 
 	public static void registerElderly() throws Exception {
 
+		System.out.println("\tREGISTER ELDERELY ");
+		
 		System.out.println("\nInput the information of the new elderly: ");
 
 		String name = InputException.getString("Name: ");
@@ -210,6 +212,8 @@ public class ElderlyMenuResidencialArea {
 	}
 
 	public static void logIn() throws Exception {
+		
+		System.out.println("\tLOG IN ELDELY ");
 
 		System.out.println("\nDni without letter:");
 		String username = read.readLine();
