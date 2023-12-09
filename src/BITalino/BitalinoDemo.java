@@ -41,7 +41,6 @@ public class BitalinoDemo {
         try {
             bitalino = new BITalino();
             // Code to find Devices
-            //Only works on some OS
             Vector<RemoteDevice> devices = bitalino.findDevices();
             System.out.println(devices);
 
@@ -53,7 +52,7 @@ public class BitalinoDemo {
 
             
             //Sampling rate, should be 10, 100 or 1000
-            int SamplingRate = 10;
+            int SamplingRate = 1000;
             bitalino.open(macAddress, SamplingRate);
 
             // Start acquisition on analog channels A2 and A6
@@ -94,7 +93,7 @@ public class BitalinoDemo {
             for (int j = 0; j < recording_sec; j++) { 
 
                 double block_size = 0.1/6;
-                // recording_Sec * 60 *(0.1/6) = recording_Sec
+                // recording_Sec * (0.1/6) = recording_MIN
                 frame = bitalino.read(block_size);
 
                 System.out.println("size block: " + frame.length);
