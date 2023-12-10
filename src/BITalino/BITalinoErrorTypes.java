@@ -18,39 +18,59 @@ public enum BITalinoErrorTypes {
 
 	private final int value;
 	private final String name;
+
+	/**
+	Constructs a BITalinoErrorTypes enum constant with the specified integer value and name.
+	@param value the integer value associated with the enum constant
+	@param name the name of the enum constant
+	 */
 	BITalinoErrorTypes (int value, String name)
 	{
-	    this.value = value;
-	    this.name = name;
+		this.value = value;
+		this.name = name;
 	}
-	
+	/**
+	Returns the integer value associated with the BITalinoErrorTypes enum constant.
+	@return the integer value of the enum constant
+	 */
 	public int getValue()
 	{
-	    return value;
+		return value;
 	}
-	
+	/**
+	Returns the name associated with the BITalinoErrorTypes enum constant.
+	@return the name of the enum constant
+	 */
 	public String getName()
 	{
-	    return name; 
+		return name; 
 	}
-	
+	/**
+	Returns the BITalinoErrorTypes enum value based on the given integer.
+	@param val the integer value to match with an enum
+	@return the BITalinoErrorTypes enum value
+	 */
 	public static final BITalinoErrorTypes getType(int val)
 	{
-	    for (BITalinoErrorTypes t : BITalinoErrorTypes.values())
-	    {
-	        if (t.getValue()==val)
-	            return t;
-	    }
-	    return UNDEFINED;
+		for (BITalinoErrorTypes t : BITalinoErrorTypes.values())
+		{
+			if (t.getValue()==val)
+				return t;
+		}
+		return UNDEFINED;
 	}
-	
+	/**
+	Returns the BITalinoErrorTypes enum value based on the given string.
+	@param val the string value to match with an enum
+	@return the BITalinoErrorTypes enum value
+	 */
 	public static final BITalinoErrorTypes getType(String val)
 	{
-	    for (BITalinoErrorTypes t : BITalinoErrorTypes.values())
-	    {
-	        if (t.getName().equals(val))
-	            return t;
-	    }
-	    return UNDEFINED;
+		for (BITalinoErrorTypes t : BITalinoErrorTypes.values())
+		{
+			if (t.getName().equals(val))
+				return t;
+		}
+		return UNDEFINED;
 	}
 }

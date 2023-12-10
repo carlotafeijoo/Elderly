@@ -28,7 +28,12 @@ public class ElderlyMenuResidencialArea {
 	static Socket so = null;
 	private static BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
 
-
+	/**
+	The main method to start the client application.
+	@param args the command line arguments
+	@throws IOException if an I/O error occurs
+	This method establishes a connection to the server, sets up input and output streams, and displays the main menu for the client application.
+	 */
 	public static void main(String[] args) throws IOException {
 
 		so = new Socket("localhost", 9009); //cambiar localhost x IP_server
@@ -41,7 +46,13 @@ public class ElderlyMenuResidencialArea {
 		mainMenu();
 
 	}
-
+	/**
+	Releases the resources associated with the PrintWriter, BufferedReader, OutputStream, and Socket.
+	@param printWriter the PrintWriter to be closed
+	@param br the BufferedReader to be closed
+	@param outputStream the OutputStream to be closed
+	@param so2 the Socket to be closed
+	 */
 	private static void releaseResources(PrintWriter printWriter, BufferedReader br, OutputStream outputStream,
 			Socket so2) {
 		printWriter.close();
@@ -62,7 +73,9 @@ public class ElderlyMenuResidencialArea {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	Displays the main menu and handles user input.
+	 */
 	public static void mainMenu() {
 		try {
 
@@ -100,7 +113,10 @@ public class ElderlyMenuResidencialArea {
 		}
 
 	}
-
+	/**
+	Handles the login process for the elderly users.
+	@throws Exception if an error occurs
+	 */
 	private static void loginElderly() throws Exception {
 		System.out.println("\nMENU");
 		System.out.println("1. Register");
@@ -131,11 +147,14 @@ public class ElderlyMenuResidencialArea {
 			break;
 		}
 	}
-
+	/**
+	Handles the registration process for elderly users.
+	@throws Exception if an error occurs
+	 */
 	public static void registerElderly() throws Exception {
 
 		System.out.println("\tREGISTER ELDERELY ");
-		
+
 		System.out.println("\nInput the information of the new elderly: ");
 
 		String name = InputException.getString("Name: ");
@@ -189,13 +208,7 @@ public class ElderlyMenuResidencialArea {
 				String username = "" + dni;
 				System.out.println(doctor_id);
 
-				Elderly elderly = new Elderly(name, dni, dob, doctor_id);
-
-				//ESTO ESTA MAL
-				//va a imprimir un elderly_id = 0 porque aqui no esta mandando ningun id al constructor y tampoco pasa por la base de datos antes de imprimirlo
-				//System.out.println("Elderly main " + elderly);
-				//mirar en la base de datos que se haya metido bien (pero eso si que funciona)
-
+				Elderly elderly = new Elderly(name, dni, dob, doctor_id);			
 				String password = InputException.getString("Password: ");
 
 				pw.println("addElderly");
@@ -210,9 +223,12 @@ public class ElderlyMenuResidencialArea {
 		}
 
 	}
-
+	/**
+	Handles the login process for elderly users.
+	@throws Exception if an error occurs
+	 */
 	public static void logIn() throws Exception {
-		
+
 		System.out.println("\tLOG IN ELDELY ");
 
 		System.out.println("\nDni without letter:");
@@ -254,21 +270,24 @@ public class ElderlyMenuResidencialArea {
 			String elderly_text = br.readLine();
 			Elderly elderly = new Elderly(elderly_text);
 
-			
+
 			System.out.println("\nThis is your user:");
 			System.out.println( "\tName = " + elderly.getName() +
 					"\n\tDNI = " + elderly.getDni() + 
 					"\n\tdoctor_id = " + elderly.getDoctor_id() + 
 					"\n\tdob = " + elderly.getDob() + 
 					"\n\tsymptoms = " + elderly.getSymptoms());
-			
+
 			System.out.println("\nLogin successful!");
 			elderlyMenu(u.getId());
 
 		}
 
 	}
-
+	/**
+	Displays the menu for elderly users and handles user input.
+	@param User_id the ID of the user
+	 */
 	private static void elderlyMenu(int User_id) {
 
 		try {
@@ -421,7 +440,12 @@ public class ElderlyMenuResidencialArea {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	Checks if a doctor ID is present in the list of doctors.
+	@param doc_id the doctor ID to be checked
+	@param doc the list of doctors
+	@return true if the doctor ID is present, otherwise false
+	 */
 	public static boolean checklist(int doc_id,  List <Doctor> doc) {
 		boolean check= false;
 		for (int i=0; i < doc.size();i++ ) {
@@ -432,7 +456,11 @@ public class ElderlyMenuResidencialArea {
 		return check;
 	}
 
-
+	/**
+	Checks if the provided MAC address matches the specified pattern.
+	@param mac the MAC address to be checked
+	@return true if the MAC address matches the pattern, otherwise false
+	 */
 	public static boolean checkMAC(String mac) {
 
 		String pattern_str = "\\w{2}:\\w{2}:\\w{2}:\\w{2}:\\w{2}:\\w{2}";
@@ -442,7 +470,13 @@ public class ElderlyMenuResidencialArea {
 		return matcher.matches();
 
 	}
-
+	/**
+	Checks if the provided year, month, and day form a valid date.
+	@param year the year
+	@param month the month
+	@param day the day
+	@return true if the date is valid, otherwise false
+	 */
 	public static boolean checkDate(int year, int month, int day) {
 		if (year < 1900 || year > 2024) {
 			return false;
@@ -472,17 +506,20 @@ public class ElderlyMenuResidencialArea {
 		return true;
 	}
 
-
-	private static void readAndSendrecord(File filetxt, int task_id, int elderly_id) {
-		//la funcion la he sacado del codigo de Java para leer ficheros
-		//le mandamos el nombre del fichero
+	/**
+	 * Reads the contents of a file and sends them over a socket.
+	 * 
+	 * @param filetxt the File object representing the file to be read and sent
+	 * @param task_id the ID of the task
+	 * @param elderly_id the ID of the elderly person
+	 */
+	private static void readAndSendrecord(File filetxt, int task_id, int elderly_id) {	
 		pw.println("storeRecord");
 		String name = filetxt.getName();
 		pw.println(name);
 		pw.println(task_id);
 		pw.println(elderly_id);
 
-		//leemos el fichero linea a linea
 		FileInputStream fileinputstream = null;
 		InputStreamReader inputstreamreader = null;
 		BufferedReader bufferedreader = null;
@@ -494,24 +531,19 @@ public class ElderlyMenuResidencialArea {
 			String stringleido;
 			while (true) {
 				stringleido = bufferedreader.readLine();
-				if (stringleido == null) {//si llega al final del fichero, se sale del bucle antes de que null se guarde en el string texto
+				if (stringleido == null) {
 					break;
 				}
-				//texto = texto + stringleido + "\n"; //ponemos el \n para que por cada linea que lee readLine para que haya un caracter sobre el que pueda actuar splitPoblacion
-				//no podemos poner un intro como separacion de las lineas porque el socket identifica \n como terminacion y solo se copia la primera linea del txt
 				texto = texto + stringleido + ",";
 
 			}
-			//System.out.println(texto);
-			//una vez hemos salido del bucle, texto contiene todo el contenido del fichero
-			//lo mandamos en un socket
 			pw.println(texto);
 
 
 		} catch (IOException ioe) {
 			System.out.println("\nError durante el proceso\t" + ioe);
 		} finally {
-			try {  //se cierran en sentido contrario al que se han abierto
+			try {  
 				if (bufferedreader != null) {
 					bufferedreader.close();
 				}
