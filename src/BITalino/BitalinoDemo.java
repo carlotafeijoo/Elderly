@@ -58,7 +58,7 @@ public class BitalinoDemo {
 
 
 			//Sampling rate, should be 10, 100 or 1000
-			int SamplingRate = 1000;
+			int SamplingRate = 10;
 			bitalino.open(macAddress, SamplingRate);
 
 			// Start acquisition on analog channels A2 and A6
@@ -99,7 +99,7 @@ public class BitalinoDemo {
 			for (int j = 0; j < recording_sec; j++) { 
 
 				//double block_size = 0.1/6;
-				int block_size = 16;
+				int block_size = 10;
 				frame = bitalino.read(block_size);
 
 				//System.out.println("size block: " + frame.length);
@@ -172,6 +172,7 @@ public class BitalinoDemo {
 		return filetxt;
 
 	}
+	
 	/**
     The main method to demonstrate data collection from a BITalino device.
     @param args the command line arguments
