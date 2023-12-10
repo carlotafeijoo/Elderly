@@ -86,7 +86,7 @@ public class ElderlyMenuResidencialArea {
 				System.out.println("1. Enter ");
 				System.out.println("2. Exit ");
 				option = InputException.getInt("\nIntroduce the number choice:  ");
-
+				System.out.println("\n--------------------------------------------------------------------------------");
 
 				switch (option) {
 
@@ -123,7 +123,8 @@ public class ElderlyMenuResidencialArea {
 		System.out.println("2. Log in ");
 		System.out.println("3. Back");
 		int choice = InputException.getInt("\nIntroduce the number of your choice: ");
-
+		System.out.println("\n--------------------------------------------------------------------------------");
+		
 		switch (choice) {
 		case 1:
 			// Call method REGISTER
@@ -140,7 +141,7 @@ public class ElderlyMenuResidencialArea {
 
 		case 3:
 			// BACK
-			mainMenu();
+			loginElderly();
 			break;
 
 		default:
@@ -170,7 +171,8 @@ public class ElderlyMenuResidencialArea {
 
 		if (checkDate(year, month, day)==false) {
 			System.out.println("\nSorry your date of birth is worng, try again \n");
-
+			System.out.println("\n--------------------------------------------------------------------------------");
+			
 		}else {
 
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -217,8 +219,11 @@ public class ElderlyMenuResidencialArea {
 				pw.println(elderly.toString());
 
 				System.out.println(br.readLine());
+				System.out.println("\n--------------------------------------------------------------------------------");
+				
 			}else {
 				System.out.println("\nSorry, the doctor id that you introduced is not valid");
+				System.out.println("\n--------------------------------------------------------------------------------");
 			}
 		}
 
@@ -246,6 +251,7 @@ public class ElderlyMenuResidencialArea {
 
 		if(user_text.equalsIgnoreCase("error")) {
 			System.out.println("\nUser not found");
+			System.out.println("\n--------------------------------------------------------------------------------");
 			mainMenu();
 		}
 		else {
@@ -279,6 +285,7 @@ public class ElderlyMenuResidencialArea {
 					"\n\tsymptoms = " + elderly.getSymptoms());
 
 			System.out.println("\nLogin successful!");
+			System.out.println("\n--------------------------------------------------------------------------------");
 			elderlyMenu(u.getId());
 
 		}
@@ -294,14 +301,15 @@ public class ElderlyMenuResidencialArea {
 			int choice;
 			do {
 
-				System.out.println("\n");
+				System.out.println("\nMENU");
 				System.out.println("1. Record signal.  ");
 				System.out.println("2. See my tasks");
 				System.out.println("3. Add symptoms");
 				System.out.println("4. Back");
 
 				choice = InputException.getInt("\nIntroduce your choice: ");
-
+				System.out.println("\n--------------------------------------------------------------------------------");
+				
 				switch (choice) {
 
 				case 1:
@@ -342,10 +350,12 @@ public class ElderlyMenuResidencialArea {
 
 					if (tasks.isEmpty()) {
 						System.out.println("\nYou don't have any tasks assigned");
+						System.out.println("\n--------------------------------------------------------------------------------");
 						break;
 					}
 
 					System.out.println("\nEnter id of the task you want to perform");
+					System.out.println("\n--------------------------------------------------------------------------------");
 					String task_id_text = read.readLine();
 					int task_id = Integer.parseInt(task_id_text);
 
